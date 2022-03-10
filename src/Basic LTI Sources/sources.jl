@@ -1,7 +1,6 @@
 
 #------------------------------
 #DEFINE STATIONARY SOURCE w/ OMNIDIRECTIONAL ANTENNA
-# LTIsource [𝚽] i.e 𝚽 = LTISource(𝐩ₛ,p)
 
 struct LTISource
   position::Vector{Float64}
@@ -23,12 +22,11 @@ struct Target
    position::Vector{Vector{Float64}}
 end
 
-
 function(T::Target)(t₀::Float64)
 αₖ = T.coefficient
 𝛏ₖ = T.position
-# how to define length of these vectors should be same
+
 for i = 1:length(𝛏ₖ)
-    r = αₖ[i].*𝚽(𝛏ₖ[i],t₀)
+    r = αₖ[i].*𝚽(𝛏ₖ[i],t₀)  # transmission
 end
 end
